@@ -1,6 +1,6 @@
-# Gas history
+# Docs
 
-![Size](https://img.shields.io/github/repo-size/appuchias/gas_history?color=orange&style=flat-square)
+![Size](https://img.shields.io/github/repo-size/appuchias/docs?color=orange&style=flat-square)
 [![Author](https://img.shields.io/badge/Project%20by-Appu-9cf?style=flat-square)](https://github.com/appuchias)
 
 ## What this is
@@ -10,7 +10,7 @@ This is not intended for replication, though you can take what you want from her
 
 ## License
 
-This code is licensed under the [GNU FDL1.3+ license](https://github.com/appuchias/gas_history/blob/master/LICENSE).
+This code is licensed under the [GNU FDL1.3+ license](https://github.com/appuchias/docs/blob/master/LICENSE).
 
 I take some files from the [Arch Wiki](https://wiki.archlinux.org/title/Main_page),
 under their license, the [GNU FDL 1.3+ license](https://www.gnu.org/licenses/fdl-1.3.html).
