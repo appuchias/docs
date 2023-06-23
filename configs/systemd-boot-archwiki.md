@@ -1,18 +1,3 @@
-```{=mediawiki}
-{{Lowercase title}}
-```
-[de:Systemd-boot](de:Systemd-boot "wikilink")
-[es:Systemd-boot](es:Systemd-boot "wikilink")
-[ja:Systemd-boot](ja:Systemd-boot "wikilink")
-[pt:Systemd-boot](pt:Systemd-boot "wikilink")
-[ru:Systemd-boot](ru:Systemd-boot "wikilink")
-[zh-hans:Systemd-boot](zh-hans:Systemd-boot "wikilink")
-`{{Related articles start}}`{=mediawiki}
-`{{Related|Arch boot process}}`{=mediawiki}
-`{{Related|Secure Boot}}`{=mediawiki}
-`{{Related|Unified Extensible Firmware Interface}}`{=mediawiki}
-`{{Related articles end}}`{=mediawiki}
-
 **systemd-boot**, previously called **gummiboot** (German for \"rubber
 dinghy\"), is an easy-to-configure [UEFI](UEFI "wikilink") [boot
 manager](boot_manager "wikilink"). It provides a textual menu to select
@@ -27,7 +12,7 @@ Manager](https://learn.microsoft.com/en-us/windows-hardware/drivers/bringup/boot
 
 ## Installation
 
-### Installing the EFI boot manager {#installing_the_efi_boot_manager}
+### Installing the EFI boot manager
 
 To install *systemd-boot*, first make sure that the system is booted
 into UEFI mode and [UEFI
@@ -66,7 +51,7 @@ will be set as the default EFI application.
 To conclude the installation, [configure](#Configuration "wikilink")
 *systemd-boot*.
 
-### Installation using XBOOTLDR {#installation_using_xbootldr}
+### Installation using XBOOTLDR
 
 A separate [/boot partition](Partitioning#/boot "wikilink") of type
 \"Linux extended boot\" (XBOOTLDR) can be created to keep the kernel and
@@ -98,7 +83,7 @@ Once in chroot, use the command:
 To conclude the installation, [configure](#Configuration "wikilink")
 *systemd-boot*.
 
-### Updating the EFI boot manager {#updating_the_efi_boot_manager}
+### Updating the EFI boot manager
 
 Whenever there is a new version of *systemd-boot*, the EFI boot manager
 can be optionally reinstalled by the user. This can be done manually or
@@ -107,7 +92,7 @@ automatically; the two approaches are described thereafter.
 ```{=mediawiki}
 {{Note|The EFI boot manager is a standalone EFI executable and any version can be used to boot the system (partial updates do not apply, since pacman only installs the ''systemd-boot'' installer, not ''systemd-boot'' itself.) However, new versions may add new features or fix bugs, so it is probably a good idea to update ''systemd-boot''.}}
 ```
-#### Manual update {#manual_update}
+#### Manual update
 
 Use *bootctl* to update *systemd-boot*:
 
@@ -116,13 +101,13 @@ Use *bootctl* to update *systemd-boot*:
 ```{=mediawiki}
 {{Note|As with {{ic|bootctl install}}, ''systemd-boot'' will try to locate the ESP at {{ic|/efi}}, {{ic|/boot}}, and {{ic|/boot/efi}}. Setting {{ic|''esp''}} to a different location requires passing the {{ic|1=--esp-path=''esp''}} option.}}
 ```
-#### Automatic update {#automatic_update}
+#### Automatic update
 
 To update *systemd-boot* automatically, either use a [systemd
 service](Systemd#Using_units "wikilink") or a [pacman
 hook](pacman_hook "wikilink"). The two methods are described below.
 
-##### systemd service {#systemd_service}
+##### systemd service
 
 As of version 250, `{{Pkg|systemd}}`{=mediawiki} ships with
 `{{ic|systemd-boot-update.service}}`{=mediawiki}.
@@ -135,7 +120,7 @@ upon the next boot.
 ```{=mediawiki}
 {{Tip|{{ic|bootctl install}} and {{ic|bootctl update}} search {{ic|.efi.signed}} files under {{ic|/usr/lib/systemd/boot/efi/}} before {{ic|.efi}} files. A {{ic|.efi.signed}} bootloader under {{ic|/usr/lib/systemd/boot/efi/}} allows {{ic|systemd-boot-update.service}} to update the bootloader without invoking Secure Boot signing tools. (See {{man|1|bootctl|SIGNED .EFI FILES}} for details.)}}
 ```
-##### pacman hook {#pacman_hook}
+##### pacman hook
 
 The package `{{AUR|systemd-boot-pacman-hook}}`{=mediawiki} adds a pacman
 hook which is executed every time `{{Pkg|systemd}}`{=mediawiki} is
@@ -191,7 +176,7 @@ consult `{{man|1|sbverify}}`{=mediawiki} and
 ```
 ## Configuration
 
-### Loader configuration {#loader_configuration}
+### Loader configuration
 
 The loader configuration is stored in the file
 `{{ic|''esp''/loader/loader.conf}}`{=mediawiki}. See
@@ -217,7 +202,7 @@ editor   no
 * If the bootloader (during the entry selection) appears distorted/uses the wrong resolution you can try to set the {{ic|console-mode}} to {{ic|auto}} (uses heuristics to select the best resolution), {{ic|keep}} (keeps the firmware provided resolution) or {{ic|2}} (tries to select the first non-UEFI-standard resolution).
 }}
 ```
-### Adding loaders {#adding_loaders}
+### Adding loaders
 
 *systemd-boot* will search for boot menu items in
 `{{ic|''esp''/loader/entries/*.conf}}`{=mediawiki} and additionally in
@@ -312,11 +297,7 @@ initrd  /initramfs-linux-fallback.img
 options root="LABEL=''arch_os''" rw
 }}
 ```
-*systemd-boot* will automatically check at boot time for **Windows Boot
-Manager** at the location
-`{{ic|/EFI/Microsoft/Boot/Bootmgfw.efi}}`{=mediawiki}, [UEFI
-shell](UEFI_shell "wikilink") `{{ic|/shellx64.efi}}`{=mediawiki} and
-**EFI Default Loader** `{{ic|/EFI/BOOT/bootx64.efi}}`{=mediawiki}, as
+*systemd-boot* will automatically check at boot time for **Windows Boot Manager** at the location [UEFI shell](UEFI_shell "wikilink") `{{ic|/shellx64.efi}}` and **EFI Default Loader** `{{ic|/EFI/BOOT/bootx64.efi}}`{=mediawiki}, as
 well as specially prepared kernel files found in
 `{{ic|/EFI/Linux/}}`{=mediawiki}. When detected, corresponding entries
 with titles `{{ic|auto-windows}}`{=mediawiki},
@@ -334,7 +315,7 @@ configuration entries must be created.
 * The [[kernel parameters]] for scenarios such as [[LVM]], [[LUKS]] or [[dm-crypt]] can be found on the relevant pages.
 }}
 ```
-#### EFI Shells or other EFI applications {#efi_shells_or_other_efi_applications}
+#### EFI Shells or other EFI applications
 
 In case you installed an [EFI shell](UEFI_shell "wikilink") with the
 package `{{Pkg|edk2-shell}}`{=mediawiki}, *systemd-boot* will
@@ -363,7 +344,7 @@ title  GPT fdisk (gdisk)
 efi     /EFI/tools/gdisk_x64.efi
 }}
 ```
-#### Boot from another disk {#boot_from_another_disk}
+#### Boot from another disk
 
 *systemd-boot* cannot launch binaries from partitions other than the ESP
 or the XBOOTLDR partition, but it can run an external script to do so.
@@ -400,17 +381,17 @@ the *.nsh* filename in the root of the *esp* partition. Also note that
 the edk2-shell EFI file can be moved to avoid the entry auto-creation of
 *systemd-boot*.
 
-### Booting into EFI Firmware Setup {#booting_into_efi_firmware_setup}
+### Booting into EFI Firmware Setup
 
 systemd-boot will automatically add an entry to boot into UEFI Firmware
 Setup if your device\'s firmware supports rebooting into setup from the
 OS.
 
-### Support hibernation {#support_hibernation}
+### Support hibernation
 
 See [Suspend and hibernate](Suspend_and_hibernate "wikilink").
 
-### Kernel parameters editor with password protection {#kernel_parameters_editor_with_password_protection}
+### Kernel parameters editor with password protection
 
 Alternatively you can install
 `{{AUR|systemd-boot-password}}`{=mediawiki} which supports
@@ -425,14 +406,14 @@ Install *systemd-boot-password* with the following command:
 With enabled editor you will be prompted for your password before you
 can edit kernel parameters.
 
-## Tips and tricks {#tips_and_tricks}
+## Tips and tricks
 
-### Keys inside the boot menu {#keys_inside_the_boot_menu}
+### Keys inside the boot menu
 
 See `{{man|7|systemd-boot|KEY BINDINGS}}`{=mediawiki} for the available
 key bindings inside the boot menu.
 
-### Choosing next boot {#choosing_next_boot}
+### Choosing next boot
 
 The boot manager is integrated with the systemctl command, allowing you
 to choose what option you want to boot after a reboot. For example,
@@ -451,7 +432,7 @@ you can use this command:
 
 `$ systemctl reboot --firmware-setup`
 
-### Unified kernel images {#unified_kernel_images}
+### Unified kernel images
 
 [Unified kernel images](Unified_kernel_image "wikilink") in
 `{{ic|''esp''/EFI/Linux/}}`{=mediawiki} are automatically sourced by
@@ -463,7 +444,7 @@ by *systemd-boot*.)
 ```{=mediawiki}
 {{Tip|Files in {{ic|''esp''/loader/entries}} will be booted first if no {{ic|default}} is set in {{ic|''esp''/loader/loader.conf}}. Remove those entries, or set the default with the full file name, ie {{ic|1=default archlinux-linux.efi}}}}
 ```
-### Grml on ESP {#grml_on_esp}
+### Grml on ESP
 
 ```{=mediawiki}
 {{Note|The following instructions are not exclusive to Grml. With slight adjustments, installing other software (e.g., [https://www.system-rescue-cd.org/ SystemRescueCD]) is possible.}}
@@ -510,7 +491,7 @@ For an overview of the available boot options, consult the [cheatcode
 for
 Grml](https://git.grml.org/?p=grml-live.git;a=blob_plain;f=templates/GRML/grml-cheatcodes.txt;hb=HEAD).
 
-### systemd-boot on BIOS systems {#systemd_boot_on_bios_systems}
+### systemd-boot on BIOS systems
 
 If you need a bootloader for BIOS systems that follows [The Boot Loader
 Specification](https://uapi-group.org/specifications/specs/boot_loader_specification/),
@@ -520,7 +501,7 @@ systems and provides a simulated EFI environment.
 
 ## Troubleshooting
 
-### Installing after booting in BIOS mode {#installing_after_booting_in_bios_mode}
+### Installing after booting in BIOS mode
 
 ```{=mediawiki}
 {{Note|This is not recommended.}}
@@ -541,7 +522,7 @@ EFI file to
 ```{=mediawiki}
 {{Note|The firmware interface of Dell Latitude series provides everything you need to setup EFI boot but the EFI Shell will not be able to write to the computer's ROM.}}
 ```
-### Manual entry using efibootmgr {#manual_entry_using_efibootmgr}
+### Manual entry using efibootmgr
 
 If the `{{ic|bootctl install}}`{=mediawiki} command failed, you can
 create a EFI boot entry manually using `{{Pkg|efibootmgr}}`{=mediawiki}:
@@ -554,7 +535,7 @@ partition](EFI_system_partition "wikilink").
 ```{=mediawiki}
 {{Note|The path to the EFI image must use the backslash ({{ic|\}}) as the separator}}
 ```
-### Manual entry using bcdedit from Windows {#manual_entry_using_bcdedit_from_windows}
+### Manual entry using bcdedit from Windows
 
 If for any reason you need to create an EFI boot entry from Windows, you
 can use the following commands from an Administrator prompt:
@@ -567,12 +548,12 @@ command. You can also set it as the default entry using
 
 `> bcdedit /default {`*`guid`*`}`
 
-### Menu does not appear after Windows upgrade {#menu_does_not_appear_after_windows_upgrade}
+### Menu does not appear after Windows upgrade
 
 See [UEFI#Windows changes boot
 order](UEFI#Windows_changes_boot_order "wikilink").
 
-### Add support for Windows BitLocker TPM unlocking {#add_support_for_windows_bitlocker_tpm_unlocking}
+### Add support for Windows BitLocker TPM unlocking
 
 To stop BitLocker from requesting the recovery key, add the following to
 *loader.conf*:
@@ -590,7 +571,7 @@ There is no need to specify Windows as an entry if it was autodetected.
 This is an experimental feature, so make sure to consult
 `{{man|5|loader.conf}}`{=mediawiki}.
 
-## See also {#see_also}
+## See also
 
 -   <https://www.freedesktop.org/wiki/Software/systemd/systemd-boot/>
 -   <https://github.com/systemd/systemd/tree/master/src/boot/efi>

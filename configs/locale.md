@@ -1,3 +1,7 @@
+Set Spanish LOCALE for English language.
+
+Path: /etc/locale.conf
+```SH
 LANG=en_US.UTF-8
 LC_NUMERIC=es_ES.UTF-8
 LC_TIME=es_ES.UTF-8
@@ -7,3 +11,4 @@ LC_PAPER=es_ES.UTF-8
 LC_ADDRESS=es_ES.UTF-8
 LC_NAME=es_ES.UTF-8
 LC_TELEPHONE=es_ES.UTF-8
+```
