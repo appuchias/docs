@@ -4,9 +4,9 @@ author:
   name: Linode Community
   email: docs@linode.com
 description: 'Generate a GPG key-pair, and convert it to an SSH key for authentication with your Linode.'
-keywords: ["gpg", "ssh", "authentication", "ssh-agent", "gpg-agent", "yubikey", "smartcard", "ssh key"]
+# keywords: ["gpg", "ssh", "authentication", "ssh-agent", "gpg-agent", "yubikey", "smartcard", "ssh key"]
 aliases: ['/security/authentication/gpg-key-for-ssh-authentication/','/security/gpg-key-for-ssh-authentication/']
-tags: ["ssh","security"]
+# tags: ["ssh","security"]
 license: '[CC BY-ND 4.0](https://creativecommons.org/licenses/by-nd/4.0)'
 title: 'How to use a GPG key for SSH authentication'
 contributor:

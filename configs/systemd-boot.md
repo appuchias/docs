@@ -1,7 +1,7 @@
 Confs in /boot/loader/entries/
 Settings in /boot/loader/loader.conf
 
-[Loader settings](systemd-boot-archwiki.md#Configuration)
+[Loader settings](https://wiki.archlinux.org/title/systemd-boot#Configuration)
 
 Updating Pacman hook
 Path: /etc/pacman.d/hooks/95-systemd-boot.hook

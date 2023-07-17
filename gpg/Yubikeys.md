@@ -2630,7 +2630,7 @@ To use a single identity with multiple YubiKeys - or to replace a lost card with
 $ gpg-connect-agent "scd serialno" "learn --force" /bye
 ```
 
-Alternatively, use a script to delete the GnuPG shadowed key, where the card serial number is stored (see [GnuPG #T2291](https://dev.gnupg.org/T2291)):
+Alternatively, use a script to delete the GnuPG shadowed key, where the card serial number is stored (see [GnuPG \#T2291](https://dev.gnupg.org/T2291)):
 
 ```console
 $ cat >> ~/scripts/remove-keygrips.sh <<EOF

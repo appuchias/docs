@@ -3,7 +3,7 @@
 [ArchWiki](https://wiki.archlinux.org/title/Discord#Discord_asks_for_an_update_not_yet_available_in_the_repository)
 ## Discord asks for an update not yet available in the repository 
 
-Discord will refuse to launch if there is an update available, and the following message will be shown *\"Must be your lucky day, there\'s a new update!\"*. If the updated version is not yet available in the official repos, you can build and install the updated package using the [Arch Build System](Arch_Build_System "wikilink").
+Discord will refuse to launch if there is an update available, and the following message will be shown *\"Must be your lucky day, there\'s a new update!\"*. If the updated version is not yet available in the official repos, you can build and install the updated package using the Arch Build System.
 
 To disable the update check, add the following to `~/.config/discord/settings.json`:
 
