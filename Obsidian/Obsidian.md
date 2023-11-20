@@ -9,3 +9,4 @@ Plugin for QuickAdd: <https://gist.github.com/nicolevanderhoeven/4e461f4477a4cb2
 - [[Dataview]] reference
 - [[Callouts]]
 - [[AnuPpucin theme]]
+- [[Flashcards]]
