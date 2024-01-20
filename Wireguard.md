@@ -13,3 +13,7 @@ And then, to enable or disable the VPN, use:
 ```bash
 nmcli connection up|down <connection>
 ```
+
+# Configuration
+Easy script: git.io/wireguard
+Monitoring: `ssh root@hostname "tcpdump -U -i wg0 -w - 'not (tcp port 22)'" | sudo wireshark -k -i -`.
